@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -19,16 +18,12 @@ public class Main {
     }
 
     public static int resultCalc(String[] input) {
-        switch (input[1]) {
-            case "+":
-                return Integer.parseInt(input[0]) + Integer.parseInt(input[2]);
-            case "-":
-                return Integer.parseInt(input[0]) - Integer.parseInt(input[2]);
-            case "/":
-                return Integer.parseInt(input[0]) / Integer.parseInt(input[2]);
-            case "*":
-                return Integer.parseInt(input[0]) * Integer.parseInt(input[2]);
-        }
-        return 0;
+        return switch (input[1]) {
+            case "+" -> Integer.parseInt(input[0]) + Integer.parseInt(input[2]);
+            case "-" -> Integer.parseInt(input[0]) - Integer.parseInt(input[2]);
+            case "/" -> Integer.parseInt(input[0]) / Integer.parseInt(input[2]);
+            case "*" -> Integer.parseInt(input[0]) * Integer.parseInt(input[2]);
+            default -> 0;
+        };
     }
 }
