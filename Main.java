@@ -17,7 +17,10 @@ public class Main {
         if (roman.checkRomanDigit(inputs[0]) && roman.checkRomanDigit(inputs[2])) {
             int a = roman.getArabianFromRoman(inputs[0]);
             int b = roman.getArabianFromRoman(inputs[2]);
+            if (checkDigit(a)) throw new Throwable("Введите числа от 1 до 10");
+            if (checkDigit(b)) throw new Throwable("Введите числа от 1 до 10");
             result = resultCalc(a, b, inputs[1]);
+            if (result < 1) throw new Throwable("Результат не может быть отрицательным");
             return roman.getRomanFromArabian(result);
         } else if (roman.checkRomanDigit(inputs[0]) && !roman.checkRomanDigit(inputs[2])) {
             throw new Throwable("Один из операндов неверного формата");
@@ -25,7 +28,11 @@ public class Main {
             throw new Throwable("Один из операндов неверного формата");
         } else {
             try {
-                result = resultCalc(inputs);
+                int a = Integer.parseInt(inputs[0]);
+                int b = Integer.parseInt(inputs[2]);
+                if (checkDigit(a)) throw new Throwable("Введите числа от 1 до 10");
+                if (checkDigit(b)) throw new Throwable("Введите числа от 1 до 10");
+                result = resultCalc(a, b, inputs[1]);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -39,15 +46,6 @@ public class Main {
         return input.split(" ");
     }
 
-    public static int resultCalc(String[] input) {
-        return switch (input[1]) {
-            case "+" -> Integer.parseInt(input[0]) + Integer.parseInt(input[2]);
-            case "-" -> Integer.parseInt(input[0]) - Integer.parseInt(input[2]);
-            case "/" -> Integer.parseInt(input[0]) / Integer.parseInt(input[2]);
-            case "*" -> Integer.parseInt(input[0]) * Integer.parseInt(input[2]);
-            default -> 0;
-        };
-    }
     public static int resultCalc(int a, int b, String operator) {
         return switch (operator) {
             case "+" -> a + b;
@@ -56,6 +54,9 @@ public class Main {
             case "*" -> a * b;
             default -> 0;
         };
+    }
+    public static boolean checkDigit(int value) {
+        return value <= 0 || value >= 11;
     }
 }
 

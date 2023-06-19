@@ -16,14 +16,14 @@ class Roman {
     };
 
     public boolean checkRomanDigit(String digit) {
-        for (int i = 0; i < 11; i++) {
-            if (digit.equals(romanDigit[i])) return true;
+        for (String s : romanDigit) {
+            if (digit.equals(s)) return true;
         }
         return false;
     }
     public int getArabianFromRoman(String romanValue) {
         int arabianValue = 0;
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < romanDigit.length; i++) {
             if (romanValue.equals(romanDigit[i])) arabianValue = i;
         }
         return arabianValue;
